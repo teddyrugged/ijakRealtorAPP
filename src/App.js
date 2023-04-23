@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import Offers from "./pages/Offers.jsx";
 import Profile from "./pages/Profile.jsx";
-import SignIn from "./pages/Signin.jsx";
+import SignIn from "./pages/SignIn.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import ForgotPassword from "./pages/ForgotPassword.jsx";
 import Header from "./components/Header.jsx";

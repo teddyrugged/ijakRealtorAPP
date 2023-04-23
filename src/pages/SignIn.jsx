@@ -1,36 +1,64 @@
-import React from 'react'
+import React, { useState } from "react";
+import { AiFillEyeInvisible,AiFillEye } from "react-icons/ai";
 
-export default function Signin() {
+export default function SignIn() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const { email, password } = formData;
+  function onChange(e) {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  }
   return (
-    <div>
-        <div class="w-full max-w-xs">
-          <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-            <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                Username
-              </label>
-              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username"/>
+    <section>
+      <h1 className="text-3xl text-center mt-6 font-bold">Sign In</h1>
+      <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto">
+        <div className="md:w-[67%] lg:w-[50%] mb-12 md:mb-6">
+          <img
+            src="https://images.unsplash.com/photo-1460317442991-0ec209397118?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8aG91c2luZ3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60"
+            alt="buildings"
+            className="w-full rounded-2xl"
+          />
+        </div>
+        <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20 ">
+          <form>
+            <input
+              className="w-full px-4 py-2 text-xl text-gray 700 bg-white border-gray-300-rounded transition ease-in-out"
+              type="email"
+              id="email"
+              value={email}
+              placeholder="Email address"
+              onChange={onChange}
+            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                id="password"
+                value={password}
+                placeholder="Password"
+                onChange={onChange}
+                className="w-full px-4 py-2 text-xl text-gray 700 bg-white border-gray-300-rounded transition ease-in-out"
+              />
+              {showPassword ? (
+                <AiFillEyeInvisible
+                  className="absolute right-1 top-3 text-xl cursor-pointer"
+                  onclick={() => setShowPassword((prevState)=> !prevState)}
+                />
+              ) : (
+                <AiFillEye className="absolute right-1 top-3 text-xl cursor-pointer"
+                onclick={() => setShowPassword((prevState)=> !prevState)} />
+              )}
             </div>
-            <div class="mb-6">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
-                Password
-              </label>
-              <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" placeholder="******************"/>
-              <p class="text-red-500 text-xs italic">Please choose a password.</p>
-            </div>
-            <div class="flex items-center justify-between">
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
-                Sign In
-              </button>
-              <a class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800" href="/forgotpassword">
-                Forgot Password?
-              </a>
-            </div>
+
+            <button />
           </form>
-          <p class="text-center text-gray-500 text-xs">
-          &copy;2020 Acme Corp. All rights reserved.
-    </p>
-    </div>
-    </div>
-  )
+        </div>
+      </div>
+    </section>
+  );
 }
