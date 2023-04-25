@@ -79,7 +79,7 @@ export default function SignUp() {
               </p>
               <p>
                 <Link
-                  to="/forgot-password"
+                  to="/forget-password"
                   className="text-purple-600  hover:text-purple-900 transition duration-200 ease-in-out "
                 >
                   Forgot Password?
