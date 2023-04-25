@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import GOuth from "../components/GOuth";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+import { getAuth, createUserWithEmailAndPassword} from "firebase/auth"
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,6 +18,17 @@ export default function SignUp() {
       [e.target.id]: e.target.value,
     }));
   }
+  function onSubmit(e){e.ppreventDefault()
+    try {
+      const auth = getAuth()
+      const userCredential = createUserWithEmailAndPassword(auth, email, password)
+      const user = userCredential.user
+      console.log(user)
+    } catch (error) {
+      console.log(error);
+
+    }
+    }
   return (
     <section>
       <h1 className="text-3xl text-center mt-6 font-bold">Sign Up</h1>
@@ -29,7 +41,7 @@ export default function SignUp() {
           />
         </div>
         <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20 ">
-          <form>
+          <form onSubmit={onSubmit}>
             <input
               className="w-full mb-6 px-4 py-2 text-xl text-gray 700 bg-white border-gray-300-rounded transition ease-in-out"
               type="text"
@@ -91,7 +103,7 @@ export default function SignUp() {
                 class="  w-full bg-blue-500 hover:bg-blue-700 transition duration-150 ease-out  text-white font-bold py-3 px-11 rounded shadow-md uppercase text-sm"
                 type="submit"
               >
-                Sign In
+                Sign Up
               </button>
             </div>
             <div className="flex items-center my-4 before:border-t before:flex-1 before:border-gray-300  after:border-t after:flex-1 after:border-gray-300">

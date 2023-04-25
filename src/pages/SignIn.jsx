@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import GOuth from "../components/GOuth";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
+// import { getAuth, createUserWithEmailAndPassword} from "firebase/auth"
 
 export default function SignIn() {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,6 +17,17 @@ export default function SignIn() {
       [e.target.id]: e.target.value,
     }));
   }
+  // function onSubmit(e){e.ppreventDefault()
+  // try {
+  //   const auth = getAuth()
+  //   const userCredential = createUserWithEmailAndPassword(auth, email, password)
+  //   const user = userCredential.user
+  //   console.log(user)
+  // } catch (error) {
+  //   console.log(error);
+
+  // }
+  // }
   return (
     <section>
       <h1 className="text-3xl text-center mt-6 font-bold">Sign In</h1>
@@ -28,7 +40,7 @@ export default function SignIn() {
           />
         </div>
         <div className="w-full md:w-[67%] lg:w-[40%] lg:ml-20 ">
-          <form>
+          <form onSubmit={""}>
             <input
               className="w-full mb-6 px-4 py-2 text-xl text-gray 700 bg-white border-gray-300-rounded transition ease-in-out"
               type="email"

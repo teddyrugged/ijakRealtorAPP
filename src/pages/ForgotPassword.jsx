@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import GOuth from "../components/GOuth";
-// import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 
 export default function ForgotPassword() {
-  // const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState(" ")
   ;
   function onChange(e) {
