@@ -8,6 +8,9 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { db } from "../firebase";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -17,6 +20,7 @@ export default function SignUp() {
     password: "",
   });
   const { name, email, password } = formData;
+  const navigate = useNavigate()
   function onChange(e) {
     setFormData((prevState) => ({
       ...prevState,
@@ -36,9 +40,15 @@ export default function SignUp() {
         displayName:name
       })
       const user = userCredential.user;
-      console.log(user);
+      const formDataCopy = {...formData};
+      delete formDataCopy.password;
+      formDataCopy.timestamp = serverTimestamp ();
+      await setDoc(doc(db, 'users', user.uid))
+      navigate ("/")
+
     } catch (error) {
-      console.log(error);
+      toast.error("something went wrong with the registration")
+
     }
   }
   return (
